@@ -1,0 +1,12 @@
+
+call .venv\Scripts\activate.bat
+
+set DATA=--add-data "assets/ui/login.ui;assets/ui" --add-data "db/database.db;db" --add-data "app/images;app/images"
+pyinstaller --onefile --windowed %DATA% src/laboratory_app.py
+
+
+pyinstaller --onefile --windowed --icon images/logo.ico --name MyCoolApp --add-data "data;data" --add-data "images;images" main.py
+
+set DATA=--add-data "assets\data\blood_services.xml;assets\data" --add-data --add-data --add-data --add-data --add-data
+
+pyinstaller --onefile --windowed --icon --name %DATA% src/laboratory_app.py

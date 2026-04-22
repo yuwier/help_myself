@@ -1,0 +1,231 @@
+blood.xml
+<id>1</id>
+<patient>792</patient>
+<barcode>7270614</barcode>
+<date>1593529155000</date>
+
+
+blood_services.xml 
+<blood>1</blood>
+<service>415</service>
+<result>0.20596</result>
+<finished>1590686686000</finished>
+<accepted>true</accepted>
+<status>Finished</status>
+<analyzer>Ledetect</analyzer>
+<user>53</user>
+
+
+patients.xml 
+<full_name>Glyn Dunkerly</full_name>
+<login>gdunkerly0</login>
+<pwd>IGU2Q1qifXuf</pwd>
+<guid>da293d99-95aa-4254-8c7e-c9e9270ef3f7</guid>
+<email>gdunkerly0@ted.com</email>
+<social_sec_number>93766273</social_sec_number>
+<ein>04-6439890</ein>
+<social_type>oms</social_type>
+<phone>+86 (106) 695-3205</phone>
+<passport_s>9091</passport_s>
+<passport_n>129038</passport_n>
+<birthdate_timestamp>-716240535000</birthdate_timestamp>
+<id>1</id>
+<country>China</country>
+<insurance_name>Avamba</insurance_name>
+<insurance_address>0536 Bunker Hill Plaza</insurance_address>
+<insurance_inn>2716833</insurance_inn>
+<ipadress>227.113.77.41</ipadress>
+<insurance_p_c>553793026</insurance_p_c>
+<insurance_bik>180522995</insurance_bik>
+<ua>Mozilla/5.0 (X11; CrOS i686 0.13.587) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.14 Safari/535.1</ua>
+
+
+services.csv 
+Code,
+Service,
+Price
+619,TSH,262.71
+
+
+users.csv 
+id,
+name,
+login,
+password,
+ip,
+lastenter,
+services,
+type
+1,Clareta Hacking,chacking0,4tzqHdkqzo4,147.231.50.234,2/10/2020,"[{""code"":557},{""code"":836},{""code"":287}]",1
+
+
+--
+--
+--
+
+услуги лаборатории(
+	наименование, 
+	стоимость,
+	код услуги,
+	срок выполнения,
+	среднее отклонение)
+
+
+ данные пациентов (
+	логин, 
+	пароль,
+	ФИО, 
+	дата рождения,
+	серия и номер паспорта,
+	телефон,
+	e-mail, 
+	номер страхового полиса, 
+	тип страхового полиса, 
+	страховая компания)
+
+ данные о страховых компаниях (
+	название страховой компании, 
+	адрес, 
+	ИНН, 
+	р/с,
+	БИК)
+
+ заказ (
+	дата создания, 
+	которые входят в заказ, услуги, 
+	статус услуги в заказе, 
+	время выполнения заказа (в днях))
+
+ оказанная услуга (
+	услуга,
+	когда и кем была и
+	на каком анализаторе)
+
+ данные о работе анализатора (
+	дата и время поступления заказа на анализатор, 
+	дата и время выполнения (в секундах) услуг на анализаторе)
+
+ данные лаборантов (
+	логин, 
+	пароль,
+	 ФИО, 
+	 последняя дата и время входа, 
+	 набор услуг, которые он может оказывать)
+
+ бухгалтер (
+	логин, 
+	пароль, 
+	ФИО, 
+	последняя дата и время входа, 
+	набор услуг,
+	выставленные счета страховым компаниям)
+
+ администратор (
+	логин и 
+	пароль)
+
+
+--
+--
+--
+написать функцию для разделения тега full_name
+
+patients = Table('patients', metadata,
+	Column('id', primary_key=True),
+	Column('name') tmp_services.Service
+)
+
+countries = Table('countries, metadata
+	Column('id', primary_key=True),
+	Column('name') tmp_patients.country
+)
+
+insurance_companies = Table('insurance_companies', metadata,
+	Column('id', primary_key=True),
+	Column('name') tmp_patients.insurance_name,
+	Column('address') tmp_patients.insurance_address,
+	Column('inn') tmp_patients.insurance_inn,
+	Column('p_c') tmp_patients.insurance_p_c,
+	Column('bik') tmp_patients.insurance_bik
+)
+
+patients = Table('patients', metadata,
+	Column('id', primary_key=True) tmp_patients.id,
+	Column('first_name') tmp_patients.first_name,
+	Column('last_name') tmp_patients.last_name,
+	Column('middle_name') tmp_patients.middle_name,
+	Column('login') tmp_patients.login,
+	Column('pwd') tmp_patients.pwd,
+	Column('guid') tmp_patients.guid,
+	Column('ein') tmp_patients.ein,
+	Column('social_type') tmp_patients.social_type,
+	Column('passport_s') tmp_patients.passport_s,
+	Column('passport_n') tmp_patients.passport_n,
+	Column('phone') tmp_patients.phone,
+	Column('birthdate_timestamp') tmp_patients.birthdate_timestamp,
+	Column('country_id') country.id,
+	Column('insurance_id') insurance_companies.id,
+	Column('ipadress') tmp_patients.ipadress,
+	Column('ua') tmp_patients.ua
+)
+
+roles = Table('roles', metadata,
+	Column('id', primary_key=True),
+	Column('name') (заполнить самой),
+)
+
+users = Table('users', metadata,
+	Column('id', primary_key=True) tmp_users.id,
+	Column('first_name') tmp_users.first_name,
+	Column('last_name') tmp_users.last_name,
+	Column('login') tmp_users.login,
+	Column('password') tmp_users.password,
+	Column('ip') tmp_users.ip,
+	Column('role_id', ForeignKey('roles.names')) tmp_users.type,
+)
+
+lastenters = Table('lastenters', metadata,
+	Column('id', primary_key=True) tmp_users.id,
+	Column('lastenter') tmp_users.lastenter
+)
+
+analyzers = Table('analyzers', metadata,
+	Column('id', primary_key=True),
+	Column('name') tmp_blood_services.analyzer
+)
+
+lab_services = Table('lab_services', metadata,
+	Column('id', primary_key=True),
+	Column('name') tmp_services.Service,
+	Column('price') tmp_services.Price,
+	Column('code') tmp_services.Code,
+	Column('deadline'),
+	Column('avg_deviation')
+)
+
+orders = Table('orders', metadata,
+	Column('id', primary_key=True),
+	Column('date') tmp_blood.date,
+	Column('timeline')
+)
+
+orders_services_on_analyzers = Table('orders_services_on_analyzers', metadata,
+	Column('id', primary_key=True),
+	Column('service_id') lab_services.id,
+	Column('order_id') orders.id,
+	Column('user_id') users.id,
+	Column('analyzer_id') analyzers.id,
+	Column('timeline')
+)
+
+
+users_services = Table('users_services', metadata,
+	Column('id', primary_key=True),
+	Column('service_id') (функция)
+)
+
+users_counts = Table('users_counts', metadata,
+	Column('id', primary_key=True),
+	Column('user_id'),
+	Column('counts'),
+)

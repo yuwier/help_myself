@@ -1,0 +1,9 @@
+PySide6
+sqlalchemy
+pandas
+lxml
+captcha
+psycopg2
+pyinstaller
+matplotlib
+weasyprint
